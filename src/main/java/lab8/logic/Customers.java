@@ -66,14 +66,14 @@ public class Customers {
     //    E. список років народження покупців, зареєстрованих у програмі без повторів
     public List<Integer> listYears() {
         return customers1.stream()
-                .map((c)->c.getBirthday().getYear())
+                .map((customer) -> customer.getBirthday().getYear())
                 .distinct()
                 .toList();
     }
     //    F. для кожного року народження визначити покупця, що має найбільшу кількість грошей на картці
     public Map<Integer, Customer> mapByYear() {
         return customers1.stream()
-                .collect(Collectors.toMap((c)->c.getBirthday().getYear(), Function.identity(), BinaryOperator.maxBy(Comparator.comparing(Customer::getCreditCardBalance))));
+                .collect(Collectors.toMap((customer) -> customer.getBirthday().getYear(), Function.identity(), BinaryOperator.maxBy(Comparator.comparing(Customer::getCreditCardBalance))));
     }
     public void showAll() {
         if (customers1.isEmpty()) {
